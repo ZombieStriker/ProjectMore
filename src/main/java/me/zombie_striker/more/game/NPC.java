@@ -1,10 +1,14 @@
 package me.zombie_striker.more.game;
 
-public class NPC extends GameObject{
+import me.zombie_striker.more.game.ai.NPCAI;
 
+public class NPC extends GameObject {
+
+    private NPCAI ai;
 
     public NPC(int x, int z) {
         super(x, z);
+        ai = new NPCAI();
     }
 
     @Override
