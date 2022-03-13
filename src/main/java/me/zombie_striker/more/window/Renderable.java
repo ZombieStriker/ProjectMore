@@ -2,7 +2,7 @@ package me.zombie_striker.more.window;
 
 import java.awt.image.BufferedImage;
 
-public abstract class Renderable {
+public interface Renderable {
 
-    public abstract BufferedImage render(int x, int y);
+    BufferedImage render(int x, int y);
 }

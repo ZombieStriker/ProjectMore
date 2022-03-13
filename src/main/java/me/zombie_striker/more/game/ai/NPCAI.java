@@ -14,11 +14,14 @@ public class NPCAI {
 
     private List<AbstractGoal> goals = new LinkedList<>();
 
-    public void tick(NPC npc){
-
+    public void tick(NPC npc) {
+        for (AbstractGoal goal : new LinkedList<>(goals)) {
+            if (goal.tick(this, npc))
+                goals.remove(goal);
+        }
     }
 
-    public void addGoal(AbstractGoal goal){
+    public void addGoal(AbstractGoal goal) {
         this.goals.add(goal);
     }
 }

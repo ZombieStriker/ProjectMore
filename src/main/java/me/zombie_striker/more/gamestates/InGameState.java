@@ -14,12 +14,20 @@ public class InGameState extends GameState{
         universe = new Universe();
     }
 
+
+    @Override
+    public void tick() {
+        universe.tick();
+    }
+
     @Override
     public BufferedImage render(int xsize, int ysize) {
         BufferedImage bi = new BufferedImage(xsize,ysize,BufferedImage.TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) bi.getGraphics();
         for(GameObject gol : universe.getObjects()){
             //TODO: Draw image at gol location
+            g.setColor(Color.RED);
+            g.drawOval(gol.getX(), gol.getZ(), 5,5);
         }
         g.dispose();
         return bi;

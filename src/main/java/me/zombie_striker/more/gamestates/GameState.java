@@ -6,4 +6,5 @@ public abstract  class GameState {
 
     public abstract BufferedImage render(int xsize, int ysize);
 
+    public abstract void tick();
 }

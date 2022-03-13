@@ -10,8 +10,9 @@ public class ZWindow extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = true;
     private Renderable render;
+    private Tickable tick;
 
-    public ZWindow(String name, int locX, int locY, int width, int height, Renderable render){
+    public ZWindow(String name, int locX, int locY, int width, int height, Renderable render, Tickable tick){
         window = new JFrame(name);
         window.setSize(width,height);
         window.setLocation(locX,locY);
@@ -21,6 +22,7 @@ public class ZWindow extends Canvas implements Runnable {
         thread = new Thread(this);
 
         this.render = render;
+        this.tick = tick;
 
         window.setVisible(true);
         thread.start();
@@ -30,7 +32,8 @@ public class ZWindow extends Canvas implements Runnable {
     public void run() {
         while (running) {
             long time = System.currentTimeMillis();
-            BufferedImage frame = render();
+            tick.tick();
+            BufferedImage frame = render.render(window.getWidth(),window.getHeight());
             Graphics2D g = (Graphics2D) this.getGraphics();
             g.drawImage(frame,0,0,frame.getWidth(),frame.getHeight(),null);
             g.dispose();
@@ -45,7 +48,4 @@ public class ZWindow extends Canvas implements Runnable {
         }
     }
 
-    private BufferedImage render() {
-        return render.render(window.getWidth(),window.getHeight());
-    }
 }

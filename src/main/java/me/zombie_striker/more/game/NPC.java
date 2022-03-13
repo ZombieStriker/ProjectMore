@@ -13,6 +13,6 @@ public class NPC extends GameObject {
 
     @Override
     public void tick() {
-
+        ai.tick(this);
     }
 }
