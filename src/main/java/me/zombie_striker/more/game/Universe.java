@@ -12,4 +12,9 @@ public class Universe {
             obj.tick();
         }
     }
+
+    public List<GameObject> getObjects() {
+        return objects;
+    }
 }
+
