@@ -11,8 +11,9 @@ public class ZWindow extends Canvas implements Runnable {
     private boolean running = true;
     private Renderable render;
     private Tickable tick;
+    private Interactable interactable;
 
-    public ZWindow(String name, int locX, int locY, int width, int height, Renderable render, Tickable tick){
+    public ZWindow(String name, int locX, int locY, int width, int height, Renderable render, Tickable tick, Interactable interactable){
         window = new JFrame(name);
         window.setSize(width,height);
         window.setLocation(locX,locY);
@@ -20,6 +21,11 @@ public class ZWindow extends Canvas implements Runnable {
         window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         window.add(this);
         thread = new Thread(this);
+
+        this.addKeyListener(interactable);
+        this.addMouseListener(interactable);
+        window.addKeyListener(interactable);
+        window.addMouseListener(interactable);
 
         this.render = render;
         this.tick = tick;
